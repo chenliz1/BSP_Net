@@ -1,2 +1,2 @@
-model_checkpoint_path: "easy_checkpoint"
-all_model_checkpoint_paths: "easy_checkpoint"
+model_checkpoint_path: "stage1.tf"
+all_model_checkpoint_paths: "stage1.tf"
