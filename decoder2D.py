@@ -41,8 +41,8 @@ class decoder2D(keras.Model):
             layers.Dense(units=512, input_shape=(p_value,)),
             layers.Dense(units=1024),
             layers.Dense(units=2048),
-            layers.Dense(units=4 * p_value),
-            layers.Reshape((p_value, 4), input_shape=(4 * p_value,))
+            layers.Dense(units=3 * p_value),
+            layers.Reshape((p_value, 3), input_shape=(3 * p_value,))
         ])
 
         self.points = points
