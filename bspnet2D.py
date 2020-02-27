@@ -10,10 +10,10 @@ class BspNet2D(keras.Model):
         super(BspNet2D, self).__init__()
         self.encoder = encoder2D()
 
-        A = np.arange(64).reshape(1, 64)
+        A = np.arange(64).reshape(1, 64) + 0.5
         A = np.repeat(A, 64, axis=0)
-        B = A.T.reshape(-1, 1)
-        A = np.concatenate((A.reshape(-1, 1), B, np.zeros(B.shape),np.ones(B.shape)), 1)
+        B = A.T.reshape(-1, 1) + 0.5
+        A = np.concatenate((A.reshape(-1, 1), B, np.ones(B.shape), np.ones(B.shape)), 1)
         points = tf.cast(tf.constant(A),dtype=tf.float32)
 
 
