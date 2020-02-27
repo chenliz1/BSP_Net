@@ -55,9 +55,9 @@ class decoder2D(keras.Model):
         x=self.layer0(input)
         x = tf.transpose(x, perm=[0, 2, 1])
         x = tf.tile(self.points[None], [batch_size, 1, 1]) @ x
-        x = self.L2(x)
-        x = self.L3(x)
+        x2 = self.L2(x)
+        x3 = self.L3(x2)
 
-        return x
+        return x3, x2
 
 # decoder2D()

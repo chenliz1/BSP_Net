@@ -18,3 +18,4 @@ def stage1_loss(S,F,T,W):
     return 1.0 * rec_loss(S, F) + 1.0 * T_reg(T) + 1.0 * W_reg(W)
 
 
+
