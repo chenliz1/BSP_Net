@@ -23,6 +23,8 @@ class BspNet2D(keras.Model):
     def call(self,input,training=None):
 
         x=self.encoder(input)
-        x=self.decoder(x)
+        x3, x1=self.decoder(x)
 
-        return x
+        return x3, x1
+    
+    
