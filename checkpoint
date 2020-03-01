@@ -1,2 +1,2 @@
-model_checkpoint_path: "stage1_version2_BS32"
-all_model_checkpoint_paths: "stage1_version2_BS32"
+model_checkpoint_path: "stage2_version0_BS32"
+all_model_checkpoint_paths: "stage2_version0_BS32"
