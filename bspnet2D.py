@@ -28,3 +28,9 @@ class BspNet2D(keras.Model):
         return x3, x1
     
     
+    def convex(self,input,training=None):
+
+        x=self.encoder(input)
+        x2=self.decoder.convex(x)
+
+        return x2

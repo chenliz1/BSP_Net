@@ -91,6 +91,20 @@ class decoder2D(keras.Model):
        
             return x3, M
     
+    
+    def convex(self,input,training=None):
+        batch_size = input.shape[0]
+        x=self.layer0(input)#P
+        x = tf.transpose(x, perm=[0, 2, 1])#P.trans
+
+        x = tf.tile(self.points[None], [batch_size, 1, 1]) @ x #D=xP.trans
+        
+        
+        x2 = self.L2(x)
+        return x2
+
+            
+       
     def switchStage(self, stage):
         self.stage = stage
         if stage==2:
