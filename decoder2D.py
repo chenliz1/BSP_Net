@@ -79,17 +79,21 @@ class decoder2D(keras.Model):
             return x3, x2
         else:
             x3 = tf.reduce_min(x2, axis=2, keepdims=True)
-            M = tf.math.count_nonzero(x2, axis=2,keepdims=True)
-            M = tf.cast(M, tf.float32)
+#             M = tf.math.count_nonzero(x2, axis=2,keepdims=True)
+            h3_max = tf.reduce_max(x2, axis=2, keepdims=True)
+
+            M = tf.cast(x2<0.01, tf.float32) * tf.cast( tf.reduce_sum(tf.cast(x2<0.01, tf.float32),axis=2, keepdims=True)>1, tf.float32)
+#             M = tf.cast(M, tf.int32)
 
             
-            M = self.c_value - M - 1.0
+#             M = self.c_value - M - 1.0
             
-            M = tf.keras.backend.clip(M, 0.0, 1.0)
+#             M = tf.keras.backend.clip(M, 0.0, 1.0)
+#             M = tf.cast(M, tf.float32)
 
             
        
-            return x3, M
+            return x3, M*x2
     
     
     def convex(self,input,training=None):

@@ -18,11 +18,11 @@ def stage1_loss(S,F,T,W):
     return 1.0 * rec_loss(S, F) + 1.0 * T_reg(T) + 1.0 * W_reg(W)
 
 def stage2_loss(S,F,M):
-    term1 = tf.matmul(tf.transpose(tf.math.maximum(S,0.0), perm=[0, 2, 1]), F)
-    term2 = tf.matmul(tf.transpose(1.0 - tf.math.minimum(S,1.0), perm=[0, 2, 1]), 1.0-F)
-#     term3 = tf.math.multiply(M, S)
+    term1 = (1-F)*tf.abs(tf.minimum(S,1)-1)
+    term2 = F*tf.abs(tf.maximum(S,0))
+    term3 = tf.reduce_mean(M*F)
 #     print(tf.matmul(M, tf.transpose(S, perm=[0, 2, 1])))
-    result = tf.reduce_mean(term1 + term2 ) #-  tf.reduce_sum(term3,[1,2]))
+    result = tf.reduce_mean(term1 + term2 ) -  term3
     return result
 
 
